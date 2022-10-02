@@ -1,5 +1,5 @@
 const UserRelationshipModel = require('../models/userRelationship.model');
-
+//***********Add new Friend
 exports.addFriend = (req, res) => {
     //**************set new Relationship values
     let newUserRelationshipModel = {
@@ -11,5 +11,12 @@ exports.addFriend = (req, res) => {
     UserRelationshipModel.addFriend(newUserRelationshipModel)
         .then((result) => {
             res.status(201).send({id: result._id});
+        });
+};
+//************ Delete a Friend
+exports.deleteFriendById = (req, res) => {
+    UserRelationshipModel.deleteFriendById(req.params.userId, req.body.relatedUserId)
+        .then((result)=>{
+            res.status(204).send({});
         });
 };

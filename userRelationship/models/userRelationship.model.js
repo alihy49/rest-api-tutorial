@@ -13,3 +13,15 @@ exports.addFriend = (relationshipData) => {
     const UserRelationship = new UserRelationship(relationshipData);
     return UserRelationship.save();
 }
+
+exports.deleteFriendById = (userId, friendId) => {
+    return new Promise((resolve, reject) => {
+        UserRelationship.deleteMany({RelatingUser: userId , RelatedUser: friendId}, (err) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(err);
+            }
+        });
+    });
+}
