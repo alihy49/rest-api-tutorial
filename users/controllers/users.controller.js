@@ -28,7 +28,8 @@ exports.list = (req, res) => {
 };
 
 exports.getById = (req, res) => {
-    UserModel.findById(req.params.userId)
+    //***************Query Parameter to show user friends
+    UserModel.findById(req.params.userId).populate({path: 'userRelationship', select: 'friend'}).exec()
         .then((result) => {
             res.status(200).send(result);
         });

@@ -13,6 +13,13 @@ userSchema.virtual('id').get(function () {
     return this._id.toHexString();
 });
 
+//*************** Virtual field for user friends
+userSchema.virtual('userRelationship', {
+    ref: 'UserRelationship',
+    localField: '_id',
+    foreignField: 'user'
+});
+
 // Ensure virtual fields are serialised.
 userSchema.set('toJSON', {
     virtuals: true
